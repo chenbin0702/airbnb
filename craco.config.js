@@ -5,7 +5,7 @@ module.exports={
   webpack:{
     alias:{
       "@":resolve("src"),
-      "components":resolve("src/utils")
+      "components":resolve("src/components")
     }
   },
   plugins: [
