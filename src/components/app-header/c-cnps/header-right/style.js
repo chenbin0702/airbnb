@@ -24,6 +24,7 @@ font-weight: 600;
 }
 .profile
 {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -37,5 +38,35 @@ font-weight: 600;
   color: ${props=>props.theme.color.textColor};
   cursor: pointer;
   ${props=>props.theme.mixin.boxShadow}
+  .panel
+  {
+    position: absolute;
+    right: 0;
+    top:54px;
+    width: 240px;
+    background-color: #fff;
+    border-radius: 10px;
+    font-weight: 400;
+    box-shadow:0 0  4px rgba(0,0,0,.18) ;
+    .top,.bottom
+    {
+      padding: 10px 0;
+      .item
+      {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 16px;
+        &:hover
+        {
+          background-color: #f5f5f5;
+        }
+      }
+    
+    }
+    .top
+    {
+      border-bottom: 1px solid #eee;
+    }
+  }
 }
 `

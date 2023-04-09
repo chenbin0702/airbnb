@@ -1,28 +1,44 @@
-import React, { memo,useEffect,useState} from 'react'
-import cbRequest from '@/services'
-const Home = memo(() => {
-  const [highstore,setHighStore]=useState({})
-  useEffect(()=>{
-    cbRequest.get({url:'/home/highscore'}).then(res=>{
-      setHighStore(res)
-      console.log(res);
-    })
-  },[])
-  return (
-    <div>
-     <h2>{highstore.title}</h2>
-     <h4>{highstore.subtitle}</h4>
-     <ul>
-      {
+import React, { memo,useEffect} from 'react'
+import HomeBanner from './c-cnps/home-banner'
+import {useSelector,shallowEqual,useDispatch} from 'react-redux'
 
-        highstore.list?.map(item=>{
-          return(
-            <li key={item.id}>{item.name}</li>
-          )
-        })
-      }
-     </ul>
-    </div>
+import { HomeWrapper } from './style'
+import { fetchHomeAllDataAction } from '@/store/modules/home';
+import SectionHeader from 'components/section-header';
+import RoomItem from '../../components/room-item';
+
+const Home = memo(() => {
+
+  const { goodPriceInfo} = useSelector((state) => ({
+    goodPriceInfo: state.home.goodPriceInfo,
+  }), shallowEqual)
+
+
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(fetchHomeAllDataAction())
+  },[dispatch])
+  console.log(goodPriceInfo);
+  return (
+    
+    <HomeWrapper>
+      <HomeBanner></HomeBanner>
+      
+        <div className="content">
+          <div className="good-price">
+          <SectionHeader title={goodPriceInfo.title} ></SectionHeader>
+            <ul className='room-list'>
+              {
+                goodPriceInfo.list?.slice(0,8)?.map(item=>{
+                  return <RoomItem itemData={item} key={item.id}></RoomItem>
+                })
+              }
+            </ul>
+          </div>
+        
+        </div>
+      
+    </HomeWrapper>  
   )
 })
 
