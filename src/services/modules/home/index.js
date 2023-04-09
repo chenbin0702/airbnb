@@ -23,3 +23,15 @@ export function getHotRecommendList()
     url:'/home/hotrecommenddest'
   })
 }
+export function getLongForList()
+{
+  return cbRequest.get({
+    url:'/home/longfor'
+  })
+}
+export function getHomePlusList()
+{
+  return cbRequest.get({
+    url:'/home/plus'
+  })
+}
