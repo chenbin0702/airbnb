@@ -2,9 +2,9 @@ import React, { memo } from 'react'
 import { ItemWrapper } from './style'
 import Rating from '@mui/material/Rating';
 const RoomItem = memo((props) => {
-  let {itemData}=props
+  const {itemData,itemWidth="25%"}=props
   return (
-    <ItemWrapper>
+    <ItemWrapper itemWidth={itemWidth}>
       <div className="inner">
         <div className="cover">
             <img src={itemData.picture_url} alt="" />
